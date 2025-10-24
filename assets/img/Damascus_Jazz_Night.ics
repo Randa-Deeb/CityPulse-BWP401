@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CityPulse//Event Calendar//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:citypulse-1759769602296
+DTSTAMP:20251006T165322Z
+DTSTART:20251012T150000Z
+DTEND:20251012T180000Z
+SUMMARY:Damascus Jazz Night
+LOCATION:Al-Kabbani Theater, Damascus, Syria
+DESCRIPTION:An unforgettable night of smooth jazz performances from top Syrian musicians. Enjoy live bands, solo artists and an intimate atmosphere. Doors open at 18:30 with food stalls and the show starting at 19:30. Tickets available online and at the venue.
+END:VEVENT
+END:VCALENDAR

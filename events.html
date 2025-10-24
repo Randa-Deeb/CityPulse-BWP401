@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- العنوان باللغتين -->
+    <title data-en="CityPulse | Events" data-ar="CityPulse | الفعاليات">CityPulse</title>
+
+    <!-- Bootstrap (سيتبدّل RTL/LTR عبر i18n.js) -->
+    <link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- أيقونات -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+
+    <!-- ملفاتك -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style-events.css">
+    <link rel="stylesheet" href="assets/css/langSwap.css">
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="./index.html">
+                <i class="fas fa-city me-2"></i>CityPulse
+            </a>
+            <!-- Language Selector (قائمة منسدلة كما هي) -->
+            <div class="language-dropdown dropdown ms-auto me-2">
+                <button class="language-selector dropdown-toggle d-flex align-items-center" type="button"
+                    id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img id="current-lang-flag" src="https://flagcdn.com/w40/sy.png" alt="flag" class="me-2">
+                    <span id="current-lang-text">العربية</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <li>
+                        <a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="ar">
+                            <img src="https://flagcdn.com/w40/sy.png" alt="syria" class="me-2">
+                            <span>العربية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="en">
+                            <img src="https://flagcdn.com/w40/us.png" alt="usa" class="me-2">
+                            <span>English</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" data-en="Home" data-ar="الرئيسية">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="events.html" data-en="Events" data-ar="الفعاليات">الفعاليات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" data-en="About" data-ar="من نحن">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html" data-en="Contact" data-ar="اتصل بنا">اتصل بنا</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== FLOATING ACTION BUTTONS ===== -->
+    <div class="floating-buttons">
+        <button class="floating-btn dark-mode-toggle" id="darkModeToggle" title=""
+            data-en-placeholder="Toggle dark mode" data-ar-placeholder="تبديل الوضع الليلي">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="floating-btn scroll-to-top" id="scrollToTop" title="" data-en-placeholder="Scroll to top"
+            data-ar-placeholder="الانتقال إلى الأعلى">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="floating-btn scroll-to-bottom" id="scrollToBottom" title=""
+            data-en-placeholder="Scroll to bottom" data-ar-placeholder="الانتقال إلى الأسفل">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container mt-5 pt-5">
+        <!-- Filter Bar -->
+        <div class="filter-bar mb-4">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <input type="text" id="searchInput" class="form-control" data-en-placeholder="Search events..."
+                        data-ar-placeholder="ابحث في الفعاليات...">
+                </div>
+
+                <div class="col-md-3">
+                    <select id="categoryFilter" class="form-select">
+                        <option value="" data-en="All categories" data-ar="جميع التصنيفات">جميع التصنيفات</option>
+                        <option value="music" data-en="Music" data-ar="موسيقى">موسيقى</option>
+                        <option value="art" data-en="Art" data-ar="فن">فن</option>
+                        <option value="tech" data-en="Tech" data-ar="تكنولوجيا">تكنولوجيا</option>
+                        <option value="sports" data-en="Sports" data-ar="رياضة">رياضة</option>
+                        <option value="food" data-en="Food" data-ar="طعام">طعام</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select id="locationFilter" class="form-select">
+                        <option value="" data-en="All locations" data-ar="جميع المواقع">جميع المواقع</option>
+                        <option value="aleppo" data-en="Aleppo" data-ar="حلب">حلب</option>
+                        <option value="damascus" data-en="Damascus" data-ar="دمشق">دمشق</option>
+                        <option value="hama" data-en="Hama" data-ar="حماة">حماة</option>
+                        <option value="homs" data-en="Homs" data-ar="حمص">حمص</option>
+                        <option value="latakia" data-en="Latakia" data-ar="اللاذقية">اللاذقية</option>
+                        <option value="tartous" data-en="Tartous" data-ar="طرطوس">طرطوس</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <input type="date" id="dateFilter" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="row g-4" id="eventsContainer">
+            <!-- Damascus Jazz Night -->
+            <div class="col-md-4 event-card" data-category="music" data-location="damascus" data-date="2025-10-12">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event1.jpg" class="card-img-top" alt="ليلة الجاز في دمشق">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Jazz Night in Damascus" data-ar="ليلة الجاز في دمشق">ليلة الجاز
+                            في دمشق</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Oct 12, 2025" data-ar="12 أكتوبر 2025">12 أكتوبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Damascus, Syria" data-ar="دمشق، سوريا">دمشق، سوريا</span>
+                        </p>
+                        <p class="small" data-en="An unforgettable night of smooth jazz from top Syrian musicians."
+                            data-ar="ليلة لا تُنسى من عروض الجاز السلسة من أفضل الموسيقيين السوريين.">
+                            ليلة لا تُنسى من عروض الجاز السلسة من أفضل الموسيقيين السوريين.
+                        </p>
+                        <a href="event.html?event=1" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hama Art & Culture Expo -->
+            <div class="col-md-4 event-card" data-category="art" data-location="hama" data-date="2025-10-15">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event2.jpg" class="card-img-top" alt="معرض حماة للفن والثقافة">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Hama Art & Culture Exhibition"
+                            data-ar="معرض حماة للفن والثقافة">معرض حماة للفن والثقافة</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Oct 15, 2025" data-ar="15 أكتوبر 2025">15 أكتوبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Hama, Syria" data-ar="حماة، سوريا">حماة، سوريا</span>
+                        </p>
+                        <p class="small"
+                            data-en="Discover creative artworks and cultural showcases from local Syrian artists."
+                            data-ar="اكتشف الأعمال الفنية الإبداعية والمعارض الثقافية لفنانين سوريين محليين.">
+                            اكتشف الأعمال الفنية الإبداعية والمعارض الثقافية لفنانين سوريين محليين.
+                        </p>
+                        <a href="event.html?event=2" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aleppo Tech Forum -->
+            <div class="col-md-4 event-card" data-category="tech" data-location="aleppo" data-date="2025-11-05">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event3.jpg" class="card-img-top" alt="منتدى حلب التكنولوجي">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Aleppo Tech Forum 2025" data-ar="منتدى حلب التكنولوجي 2025">
+                            منتدى حلب التكنولوجي 2025</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Nov 5, 2025" data-ar="5 نوفمبر 2025">5 نوفمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Aleppo, Syria" data-ar="حلب، سوريا">حلب، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Join innovators and developers to discuss the future of Syrian tech."
+                            data-ar="انضم إلى أبرز المبتكرين والمطورين لمناقشة مستقبل التكنولوجيا السورية.">
+                            انضم إلى أبرز المبتكرين والمطورين لمناقشة مستقبل التكنولوجيا السورية.
+                        </p>
+                        <a href="event.html?event=3" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hama Marathon -->
+            <div class="col-md-4 event-card" data-category="sports" data-location="hama" data-date="2025-10-20">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event4.jpg" class="card-img-top" alt="ماراثون حماة">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Hama City Marathon" data-ar="ماراثون مدينة حماة">ماراثون مدينة
+                            حماة</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Oct 20, 2025" data-ar="20 أكتوبر 2025">20 أكتوبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Hama, Syria" data-ar="حماة، سوريا">حماة، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Annual marathon promoting fitness and community engagement."
+                            data-ar="فعالية الماراثون السنوية لتعزيز اللياقة البدنية ومشاركة المجتمع.">
+                            فعالية الماراثون السنوية لتعزيز اللياقة البدنية ومشاركة المجتمع.
+                        </p>
+                        <a href="event.html?event=4" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Damascus Food Festival -->
+            <div class="col-md-4 event-card" data-category="food" data-location="damascus" data-date="2025-12-01">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event5.jpg" class="card-img-top" alt="مهرجان دمشق للطعام">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Damascus Food Festival" data-ar="مهرجان دمشق للطعام">مهرجان دمشق
+                            للطعام</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Dec 1, 2025" data-ar="1 ديسمبر 2025">1 ديسمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Damascus, Syria" data-ar="دمشق، سوريا">دمشق، سوريا</span>
+                        </p>
+                        <p class="small"
+                            data-en="Explore local dishes and culinary heritage in this delicious food event."
+                            data-ar="استكشف الأطباق المحلية والتراث الطهوي في هذا الحدث الغذائي اللذيذ.">
+                            استكشف الأطباق المحلية والتراث الطهوي في هذا الحدث الغذائي اللذيذ.
+                        </p>
+                        <a href="event.html?event=5" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latakia Indie Rock Concert -->
+            <div class="col-md-4 event-card" data-category="music" data-location="latakia" data-date="2025-11-22">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event6.jpg" class="card-img-top" alt="حفلة الروك في اللاذقية">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Rock Concert in Latakia" data-ar="حفلة الروك في اللاذقية">حفلة
+                            الروك في اللاذقية</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Nov 22, 2025" data-ar="22 نوفمبر 2025">22 نوفمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Latakia, Syria" data-ar="اللاذقية، سوريا">اللاذقية، سوريا</span>
+                        </p>
+                        <p class="small" data-en="A seaside concert featuring top Syrian indie rock bands."
+                            data-ar="حفلة على شاطئ البحر تضم أفضل فرق الروك المستقلة السورية.">
+                            حفلة على شاطئ البحر تضم أفضل فرق الروك المستقلة السورية.
+                        </p>
+                        <a href="event.html?event=6" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Sculpture Expo – Damascus -->
+            <div class="col-md-4 event-card" data-category="art" data-location="damascus" data-date="2025-08-25">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event7.jpg" class="card-img-top" alt="معرض النحت الحديث - دمشق">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Modern Sculpture Exhibition — Damascus"
+                            data-ar="معرض النحت الحديث - دمشق">معرض النحت الحديث - دمشق</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Aug 25, 2025" data-ar="25 أغسطس 2025">25 أغسطس 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Damascus, Syria" data-ar="دمشق، سوريا">دمشق، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Experience creative works by contemporary Syrian sculptors."
+                            data-ar="جرب الأعمال الإبداعية لنحاتين سوريين معاصرين.">
+                            جرب الأعمال الإبداعية لنحاتين سوريين معاصرين.
+                        </p>
+                        <a href="event.html?event=7" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hackathon Syria 2025 -->
+            <div class="col-md-4 event-card" data-category="tech" data-location="damascus" data-date="2025-09-10">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event8.jpg" class="card-img-top" alt="هاكاثون سوريا 2025">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Syria Hackathon 2025" data-ar="هاكاثون سوريا 2025">هاكاثون سوريا
+                            2025</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Sep 10, 2025" data-ar="10 سبتمبر 2025">10 سبتمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Damascus, Syria" data-ar="دمشق، سوريا">دمشق، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Innovate and collaborate with the brightest young developers."
+                            data-ar="ابتكر وتعاون مع ألمع المطورين الشباب.">
+                            ابتكر وتعاون مع ألمع المطورين الشباب.
+                        </p>
+                        <a href="event.html?event=8" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tartous Beach Volleyball Cup -->
+            <div class="col-md-4 event-card" data-category="sports" data-location="tartous" data-date="2025-08-15">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event9.jpg" class="card-img-top" alt="كأس طرطوس للكرة الطائرة الشاطئية">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Tartous Beach Volleyball Cup"
+                            data-ar="كأس طرطوس للكرة الطائرة الشاطئية">كأس طرطوس للكرة الطائرة الشاطئية</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Aug 15, 2025" data-ar="15 أغسطس 2025">15 أغسطس 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Tartous, Syria" data-ar="طرطوس، سوريا">طرطوس، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Join the competition or enjoy the summer vibes by the sea."
+                            data-ar="انضم إلى المنافسة أو استمتع بأجواء الصيف بجانب البحر.">
+                            انضم إلى المنافسة أو استمتع بأجواء الصيف بجانب البحر.
+                        </p>
+                        <a href="event.html?event=9" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vegan Street Market – Damascus -->
+            <div class="col-md-4 event-card" data-category="food" data-location="damascus" data-date="2025-10-10">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event10.jpg" class="card-img-top" alt="سوق النباتيين - دمشق">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Vegan Market — Damascus" data-ar="سوق النباتيين - دمشق">سوق
+                            النباتيين - دمشق</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Oct 10, 2025" data-ar="10 أكتوبر 2025">10 أكتوبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Damascus, Syria" data-ar="دمشق، سوريا">دمشق، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Discover delicious and healthy vegan creations from local vendors."
+                            data-ar="اكتشف إبداعات نباتية لذيذة وصحية من البائعين المحليين.">
+                            اكتشف إبداعات نباتية لذيذة وصحية من البائعين المحليين.
+                        </p>
+                        <a href="event.html?event=10" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Air Cinema – Aleppo Citadel -->
+            <div class="col-md-4 event-card" data-category="art" data-location="aleppo" data-date="2025-09-18">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event11.jpg" class="card-img-top" alt="سينما الهواء الطلق - قلعة حلب">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Open-Air Cinema — Aleppo Citadel"
+                            data-ar="سينما الهواء الطلق - قلعة حلب">سينما الهواء الطلق - قلعة حلب</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Sep 18, 2025" data-ar="18 سبتمبر 2025">18 سبتمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Aleppo, Syria" data-ar="حلب، سوريا">حلب، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Watch classic films under the stars near a historic landmark."
+                            data-ar="شاهد الأفلام الكلاسيكية تحت النجوم بالقرب من المعلم التاريخي السوري.">
+                            شاهد الأفلام الكلاسيكية تحت النجوم بالقرب من المعلم التاريخي السوري.
+                        </p>
+                        <a href="event.html?event=11" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Startup Meetup – Homs -->
+            <div class="col-md-4 event-card" data-category="tech" data-location="homs" data-date="2025-11-08">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event12.jpg" class="card-img-top" alt="لقاء الشركات الناشئة - حمص">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Startup Meetup — Homs" data-ar="لقاء الشركات الناشئة - حمص">لقاء
+                            الشركات الناشئة - حمص</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Nov 8, 2025" data-ar="8 نوفمبر 2025">8 نوفمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Homs, Syria" data-ar="حمص، سوريا">حمص، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Connect with Syrian entrepreneurs and investors for future projects."
+                            data-ar="تواصل مع رواد الأعمال والمستثمرين السوريين لمشاريع مستقبلية.">
+                            تواصل مع رواد الأعمال والمستثمرين السوريين لمشاريع مستقبلية.
+                        </p>
+                        <a href="event.html?event=12" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Farmers Market – Hama -->
+            <div class="col-md-4 event-card" data-category="food" data-location="hama" data-date="2025-09-25">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event13.jpg" class="card-img-top" alt="سوق المزارعين - حماة">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Farmers' Market — Hama" data-ar="سوق المزارعين - حماة">سوق
+                            المزارعين - حماة</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Sep 25, 2025" data-ar="25 سبتمبر 2025">25 سبتمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Hama, Syria" data-ar="حماة، سوريا">حماة، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Fresh local produce, handicrafts, and tasty homemade foods."
+                            data-ar="منتجات محلية طازجة وحرف يدوية ومأكولات منزلية لذيذة.">
+                            منتجات محلية طازجة وحرف يدوية ومأكولات منزلية لذيذة.
+                        </p>
+                        <a href="event.html?event=13" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charity Run – Damascus -->
+            <div class="col-md-4 event-card" data-category="sports" data-location="damascus" data-date="2025-10-05">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event14.jpg" class="card-img-top" alt="سباق الخير - دمشق">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Charity Run — Damascus" data-ar="سباق الخير - دمشق">سباق الخير -
+                            دمشق</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Oct 5, 2025" data-ar="5 أكتوبر 2025">5 أكتوبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Damascus, Syria" data-ar="دمشق، سوريا">دمشق، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Support local causes while staying active with your community."
+                            data-ar="ادعم القضايا المحلية بينما تبقى نشطًا مع مجتمعك.">
+                            ادعم القضايا المحلية بينما تبقى نشطًا مع مجتمعك.
+                        </p>
+                        <a href="event.html?event=14" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photography Workshop – Aleppo -->
+            <div class="col-md-4 event-card" data-category="art" data-location="aleppo" data-date="2025-11-02">
+                <div class="card h-100 shadow-sm">
+                    <img src="assets/img/event15.jpg" class="card-img-top" alt="ورشة التصوير الفوتوغرافي - حلب">
+                    <div class="card-body">
+                        <h5 class="card-title" data-en="Photography Workshop — Aleppo"
+                            data-ar="ورشة التصوير الفوتوغرافي - حلب">ورشة التصوير الفوتوغرافي - حلب</h5>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            <span data-en="Nov 2, 2025" data-ar="2 نوفمبر 2025">2 نوفمبر 2025</span>
+                        </p>
+                        <p class="text-muted mb-1">
+                            <i class="fa-solid fa-location-dot me-1"></i>
+                            <span data-en="Aleppo, Syria" data-ar="حلب، سوريا">حلب، سوريا</span>
+                        </p>
+                        <p class="small" data-en="Master photography techniques with professional Syrian artists."
+                            data-ar="أتقن تقنيات التصوير الفوتوغرافي مع فنانين سوريين محترفين.">
+                            أتقن تقنيات التصوير الفوتوغرافي مع فنانين سوريين محترفين.
+                        </p>
+                        <a href="event.html?event=15" class="btn btn-primary btn-sm mt-2" data-en="View details"
+                            data-ar="عرض التفاصيل">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center text-white py-5 mt-5">
+        <div class="container">
+            <h5 class="fw-bold mb-3" data-en="CityPulse – Discover what's happening around you"
+                data-ar="CityPulse – اكتشف ما يحدث حولك">
+                CityPulse – اكتشف ما يحدث حولك
+            </h5>
+
+            <p class="mb-1">
+                <i class="fa-solid fa-location-dot me-2"></i>
+                <span data-en="Hama, Syria – Al-Jaish Street, next to the Cultural Center"
+                    data-ar="حماة، سوريا – شارع الجيش، بجوار المركز الثقافي">
+                    حماة، سوريا – شارع الجيش، بجوار المركز الثقافي
+                </span>
+            </p>
+            <p class="mb-1">
+                <i class="fa-solid fa-envelope me-2"></i>
+                info@citypulse.com
+            </p>
+            <p class="mb-3">
+                <i class="fa-solid fa-phone me-2"></i>
+                963+ 222 444 980
+            </p>
+
+            <div class="social-links mb-3">
+                <a href="#" class="mx-2 text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-x-twitter fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+
+            <p class="small-credits mb-0" data-en="© 2025 CityPulse. All rights reserved. | Designed with ❤️ in Syria."
+                data-ar="© 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.">
+                © 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== JS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- i18n المركزي -->
+    <script src="assets/js/i18n.js"></script>
+    <!-- سكربت الصفحة (إن كان لديك تصفية/بحث مخصص) -->
+    <script src="assets/js/events-js.js"></script>
+</body>
+
+</html>

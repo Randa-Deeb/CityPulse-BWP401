@@ -1,0 +1,443 @@
+/* ===== BASE STYLES & LAYOUT ===== */
+/* Main page structure and foundational styles */
+body {
+  font-family: "Cairo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #f3f4f6, #eef1f6);
+  color: #222;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Container spacing for main content area */
+main.container {
+  margin-top: 92px;
+  margin-bottom: 40px;
+}
+
+/* ===== COMPONENT STYLES ===== */
+/* Hero section image styling */
+.hero-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Gallery grid layout for event images */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.gallery-grid img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin: 0 auto;
+  display: block;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* Modal styling for full-size image view */
+.gallery-modal img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* ===== CARD & CONTENT STYLES ===== */
+/* Related events card styling */
+.related-event-card {
+  transition: transform 0.2s ease;
+  padding: 10px 20px;
+}
+
+.related-event-card:hover {
+  transform: translateY(-5px);
+}
+
+.related-event img {
+  height: 120px;
+  object-fit: cover;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
+.related-event-title {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  height: 2.6rem;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.related-event-date {
+  font-size: 0.8rem;
+}
+
+/* Comments section styling */
+.comment-card {
+  border-left: 3px solid #0d6efd;
+}
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+/* ===== BUTTON STYLES ===== */
+/* Action buttons container and layout */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.action-buttons .btn {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced button interactions */
+.btn-action {
+  transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button transition for smooth state changes */
+.btn {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== FORM STYLES ===== */
+/* Form control styling for consistent appearance */
+.form-control,
+.form-select {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.5rem;
+}
+
+/* Form validation states */
+.is-valid {
+  border-color: #198754 !important;
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+.valid-feedback {
+  display: block;
+}
+
+/* Error message styling for form validation */
+.field-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ===== FLOATING ACTION BUTTONS ===== */
+/* Fixed position floating buttons container */
+.floating-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Base floating button styling */
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effects for floating buttons */
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Shimmer effect on hover */
+.floating-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.floating-btn:hover::before {
+  left: 100%;
+}
+
+/* Individual floating button color schemes */
+.dark-mode-toggle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.scroll-to-top {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  display: none;
+}
+
+.scroll-to-bottom {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  display: none;
+}
+
+/* ===== DARK MODE STYLES ===== */
+/* Dark mode base styling */
+body.dark-mode {
+  background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
+  color: #e0e0e0;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Dark mode transitions for all child elements */
+body.dark-mode * {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card styling in dark mode */
+.card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .card {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+/* Navbar dark mode styling */
+.navbar {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .navbar {
+  background-color: #2d2d2d !important;
+  border-bottom: 1px solid #444;
+}
+
+body.dark-mode .navbar-brand {
+  color: #0d6efd !important;
+}
+
+body.dark-mode .nav-link {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link:focus {
+  color: #0d6efd !important;
+}
+
+body.dark-mode .nav-link.active {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+body.dark-mode .navbar-toggler {
+  border-color: #555;
+}
+
+body.dark-mode .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body.dark-mode .navbar-collapse {
+  background-color: #2d2d2d;
+}
+
+/* Form elements in dark mode */
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #3d3d3d;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+/* Button styling in dark mode */
+body.dark-mode .btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Text and content styling in dark mode */
+.text-muted {
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .text-muted {
+  color: #aaa !important;
+}
+
+/* Footer dark mode styling */
+footer {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode footer {
+  background-color: #1a1a1a !important;
+}
+
+/* Shadow adjustments for dark mode */
+.shadow-sm {
+  transition: box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ===== ANIMATIONS & TRANSITIONS ===== */
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fade in animation for mode transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.dark-mode-toggle.dark-mode-active {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Smooth transitions for interactive elements */
+.navbar-brand,
+.nav-link,
+.card-title,
+.card-text {
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Background gradient transition */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f3f4f6, #eef1f6);
+  z-index: -1;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode::before {
+  background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
+}
+
+/* Transition state management */
+body.mode-transitioning {
+  overflow-x: hidden;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Mobile-first responsive adjustments */
+@media (max-width: 991.98px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+/* Dropdown menu styling for future enhancements */
+body.dark-mode .dropdown-menu {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+body.dark-mode .dropdown-item {
+  color: #e0e0e0;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #3d3d3d;
+  color: #0d6efd;
+}
+
+body.dark-mode .card-header {
+  background-color: #2d2d2d !important;
+}
+body.dark-mode .modal-content {
+  background-color: #2d2d2d;
+}

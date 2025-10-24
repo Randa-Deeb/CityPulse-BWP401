@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- العنوان باللغتين -->
+    <title data-en="CityPulse | Discover what's happening around you" data-ar="CityPulse | اكتشف ما يحدث حولك">CityPulse
+    </title>
+
+    <link rel="icon" href="assets/img/logo.png" />
+
+    <!-- Bootstrap (سيتبدّل RTL/LTR عبر i18n.js) -->
+    <link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" />
+
+    <!-- أيقونات -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+
+    <!-- لا نحمّل خطوط Google هنا؛ i18n.js سيتكفّل بها (Cairo/Poppins) -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/langSwap.css" />
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="./index.html">
+                <i class="fas fa-city me-2"></i>CityPulse
+            </a>
+
+            <!-- Language Selector (أبقيناه كما هو، فقط ربطناه بمنطق i18n.js) -->
+            <div class="language-dropdown dropdown ms-auto me-2">
+                <button class="language-selector dropdown-toggle d-flex align-items-center" type="button"
+                    id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img id="current-lang-flag" src="https://flagcdn.com/w40/sy.png" alt="flag" class="me-2">
+                    <span id="current-lang-text">العربية</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <li>
+                        <a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="ar">
+                            <img src="https://flagcdn.com/w40/sy.png" alt="syria" class="me-2">
+                            <span>العربية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="en">
+                            <img src="https://flagcdn.com/w40/us.png" alt="usa" class="me-2">
+                            <span>English</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./index.html" data-en="Home" data-ar="الرئيسية">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html" data-en="Events" data-ar="الفعاليات">الفعاليات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" data-en="About" data-ar="من نحن">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html" data-en="Contact" data-ar="اتصل بنا">اتصل بنا</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== FLOATING ACTION BUTTONS ===== -->
+    <div class="floating-buttons">
+        <button class="floating-btn dark-mode-toggle" id="darkModeToggle" title=""
+            data-en-placeholder="Toggle dark mode" data-ar-placeholder="تبديل الوضع الليلي">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="floating-btn scroll-to-top" id="scrollToTop" title="" data-en-placeholder="Scroll to top"
+            data-ar-placeholder="الانتقال إلى الأعلى">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="floating-btn scroll-to-bottom" id="scrollToBottom" title=""
+            data-en-placeholder="Scroll to bottom" data-ar-placeholder="الانتقال إلى الأسفل">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- ===== HERO SLIDER (Syrian Events) ===== -->
+    <section id="hero" class="mt-5 pt-4">
+        <div id="featuredEvents" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                <!-- Event 1 -->
+                <div class="carousel-item active">
+                    <a href="event.html?event=1">
+                        <img src="assets/img/event1.jpg" class="d-block w-100 hero-img" alt="Event 1">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Jazz Night in Damascus" data-ar="ليلة الجاز في دمشق">ليلة الجاز في دمشق</h2>
+                        <p data-en="Enjoy a live night of jazz in the heart of Damascus."
+                            data-ar="استمتع بليلة حية من موسيقى الجاز في قلب دمشق.">
+                            استمتع بليلة حية من موسيقى الجاز في قلب دمشق.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=2">
+                        <img src="assets/img/event2.jpg" class="d-block w-100 hero-img" alt="Event 2">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Hama Art & Culture Exhibition" data-ar="معرض حماة للفن والثقافة">معرض حماة للفن
+                            والثقافة</h2>
+                        <p data-en="Explore Syria’s artistic soul through paintings, crafts, and culture."
+                            data-ar="استكشف الروح الفنية لسوريا من خلال اللوحات والحرف اليدوية والثقافة.">
+                            استكشف الروح الفنية لسوريا من خلال اللوحات والحرف اليدوية والثقافة.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=3">
+                        <img src="assets/img/event3.jpg" class="d-block w-100 hero-img" alt="Event 3">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Aleppo Tech Forum 2025" data-ar="منتدى حلب التكنولوجي 2025">منتدى حلب التكنولوجي
+                            2025</h2>
+                        <p data-en="Discuss innovation and digital transformation in Syria’s tech scene."
+                            data-ar="ناقش الابتكارات والتحول الرقمي في المشهد التكنولوجي السوري.">
+                            ناقش الابتكارات والتحول الرقمي في المشهد التكنولوجي السوري.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=4">
+                        <img src="assets/img/event4.jpg" class="d-block w-100 hero-img" alt="Event 4">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Hama City Marathon" data-ar="ماراثون مدينة حماة">ماراثون مدينة حماة</h2>
+                        <p data-en="Run along the Orontes River and enjoy community spirit."
+                            data-ar="اركض على ضفاف نهر العاصي واستمتع بروح المجتمع.">
+                            اركض على ضفاف نهر العاصي واستمتع بروح المجتمع.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 5 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=5">
+                        <img src="assets/img/event5.jpg" class="d-block w-100 hero-img" alt="Event 5">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Damascus Food Festival" data-ar="مهرجان دمشق للطعام">مهرجان دمشق للطعام</h2>
+                        <p data-en="Taste traditional Syrian dishes from top local chefs."
+                            data-ar="تذوق الأطباق السورية التقليدية من أفضل الطهاة المحليين.">
+                            تذوق الأطباق السورية التقليدية من أفضل الطهاة المحليين.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 6 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=6">
+                        <img src="assets/img/event6.jpg" class="d-block w-100 hero-img" alt="Event 6">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Rock Concert in Latakia" data-ar="حفلة الروك في اللاذقية">حفلة الروك في اللاذقية
+                        </h2>
+                        <p data-en="Feel the waves and the music on the coastal stage."
+                            data-ar="اشعر بتلاقي الأمواج والموسيقى على مسرح الساحل اللاذقي.">
+                            اشعر بتلاقي الأمواج والموسيقى على مسرح الساحل اللاذقي.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 7 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=7">
+                        <img src="assets/img/event7.jpg" class="d-block w-100 hero-img" alt="Event 7">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Modern Sculpture Exhibition — Damascus" data-ar="معرض النحت الحديث - دمشق">معرض
+                            النحت الحديث - دمشق</h2>
+                        <p data-en="Experience creative works by contemporary Syrian sculptors."
+                            data-ar="جرب الأعمال الإبداعية لنحاتين سوريين معاصرين.">
+                            جرب الأعمال الإبداعية لنحاتين سوريين معاصرين.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 8 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=8">
+                        <img src="assets/img/event8.jpg" class="d-block w-100 hero-img" alt="Event 8">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Syria Hackathon 2025" data-ar="هاكاثون سوريا 2025">هاكاثون سوريا 2025</h2>
+                        <p data-en="Innovate and collaborate with bright young developers."
+                            data-ar="ابتكر وتعاون مع ألمع المطورين الشباب.">
+                            ابتكر وتعاون مع ألمع المطورين الشباب.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 9 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=9">
+                        <img src="assets/img/event9.jpg" class="d-block w-100 hero-img" alt="Event 9">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Tartous Beach Volleyball Cup" data-ar="كأس طرطوس للكرة الطائرة الشاطئية">كأس طرطوس
+                            للكرة الطائرة الشاطئية</h2>
+                        <p data-en="Join the competition or enjoy the summer seaside vibes."
+                            data-ar="انضم إلى المنافسة أو استمتع بأجواء الصيف بجانب البحر.">
+                            انضم إلى المنافسة أو استمتع بأجواء الصيف بجانب البحر.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 10 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=10">
+                        <img src="assets/img/event10.jpg" class="d-block w-100 hero-img" alt="Event 10">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Vegan Market — Damascus" data-ar="سوق النباتيين - دمشق">سوق النباتيين - دمشق</h2>
+                        <p data-en="Discover delicious and healthy vegan creations from local vendors."
+                            data-ar="اكتشف إبداعات نباتية لذيذة وصحية من البائعين المحليين.">
+                            اكتشف إبداعات نباتية لذيذة وصحية من البائعين المحليين.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 11 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=11">
+                        <img src="assets/img/event11.jpg" class="d-block w-100 hero-img" alt="Event 11">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Open-Air Cinema — Aleppo Citadel" data-ar="سينما الهواء الطلق - قلعة حلب">سينما
+                            الهواء الطلق - قلعة حلب</h2>
+                        <p data-en="Watch classic films under the stars near a historic landmark."
+                            data-ar="شاهد الأفلام الكلاسيكية تحت النجوم بالقرب من المعلم التاريخي السوري.">
+                            شاهد الأفلام الكلاسيكية تحت النجوم بالقرب من المعلم التاريخي السوري.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 12 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=12">
+                        <img src="assets/img/event12.jpg" class="d-block w-100 hero-img" alt="Event 12">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Startup Meetup — Homs" data-ar="لقاء الشركات الناشئة - حمص">لقاء الشركات الناشئة -
+                            حمص</h2>
+                        <p data-en="Connect with Syrian entrepreneurs and investors for future projects."
+                            data-ar="تواصل مع رواد الأعمال والمستثمرين السوريين لمشاريع مستقبلية.">
+                            تواصل مع رواد الأعمال والمستثمرين السوريين لمشاريع مستقبلية.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 13 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=13">
+                        <img src="assets/img/event13.jpg" class="d-block w-100 hero-img" alt="Event 13">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Farmers' Market — Hama" data-ar="سوق المزارعين - حماة">سوق المزارعين - حماة</h2>
+                        <p data-en="Fresh local produce, handicrafts, and delicious homemade foods."
+                            data-ar="منتجات محلية طازجة وحرف يدوية ومأكولات منزلية لذيذة.">
+                            منتجات محلية طازجة وحرف يدوية ومأكولات منزلية لذيذة.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 14 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=14">
+                        <img src="assets/img/event14.jpg" class="d-block w-100 hero-img" alt="Event 14">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Charity Run — Damascus" data-ar="سباق الخير - دمشق">سباق الخير - دمشق</h2>
+                        <p data-en="Support local causes while staying active with your community."
+                            data-ar="ادعم القضايا المحلية بينما تبقى نشطًا مع مجتمعك.">
+                            ادعم القضايا المحلية بينما تبقى نشطًا مع مجتمعك.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 15 -->
+                <div class="carousel-item">
+                    <a href="event.html?event=15">
+                        <img src="assets/img/event15.jpg" class="d-block w-100 hero-img" alt="Event 15">
+                    </a>
+                    <div class="carousel-caption">
+                        <h2 data-en="Photography Workshop — Aleppo" data-ar="ورشة التصوير الفوتوغرافي - حلب">ورشة
+                            التصوير الفوتوغرافي - حلب</h2>
+                        <p data-en="Master photography techniques with professional Syrian artists."
+                            data-ar="أتقن تقنيات التصوير الفوتوغرافي مع فنانين سوريين محترفين.">
+                            أتقن تقنيات التصوير الفوتوغرافي مع فنانين سوريين محترفين.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredEvents" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredEvents" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== FILTERABLE EVENTS ===== -->
+    <section id="filters" class="py-5 text-center">
+        <div class="container">
+            <h3 class="mb-4 fw-bold" data-en="Discover events by category" data-ar="اكتشف الفعاليات حسب التصنيف">اكتشف
+                الفعاليات حسب التصنيف</h3>
+
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+                <button class="btn btn-outline-primary active" data-filter="all" data-en="All"
+                    data-ar="الكل">الكل</button>
+                <button class="btn btn-outline-primary" data-filter="music" data-en="Music"
+                    data-ar="موسيقى">موسيقى</button>
+                <button class="btn btn-outline-primary" data-filter="art" data-en="Art" data-ar="فن">فن</button>
+                <button class="btn btn-outline-primary" data-filter="tech" data-en="Tech"
+                    data-ar="تكنولوجيا">تكنولوجيا</button>
+                <button class="btn btn-outline-primary" data-filter="sports" data-en="Sports"
+                    data-ar="رياضة">رياضة</button>
+                <button class="btn btn-outline-primary" data-filter="food" data-en="Food" data-ar="طعام">طعام</button>
+            </div>
+
+            <div class="events-grid">
+                <div class="event-card" data-category="music">
+                    <a href="event.html?event=1"><img src="assets/img/event1.jpg" alt=""></a>
+                    <h5><a href="event.html?event=1" data-en="Damascus Music Night" data-ar="ليلة دمشق الموسيقية">ليلة
+                            دمشق الموسيقية</a></h5>
+                </div>
+
+                <div class="event-card" data-category="art">
+                    <a href="event.html?event=2"><img src="assets/img/event2.jpg" alt=""></a>
+                    <h5><a href="event.html?event=2" data-en="Hama Art & Culture Exhibition"
+                            data-ar="معرض حماة للفن والثقافة">معرض حماة للفن والثقافة</a></h5>
+                </div>
+
+                <div class="event-card" data-category="tech">
+                    <a href="event.html?event=3"><img src="assets/img/event3.jpg" alt=""></a>
+                    <h5><a href="event.html?event=3" data-en="Aleppo Tech Forum 2025"
+                            data-ar="منتدى حلب التكنولوجي 2025">منتدى حلب التكنولوجي 2025</a></h5>
+                </div>
+
+                <div class="event-card" data-category="sports">
+                    <a href="event.html?event=4"><img src="assets/img/event4.jpg" alt=""></a>
+                    <h5><a href="event.html?event=4" data-en="Hama City Marathon" data-ar="ماراثون مدينة حماة">ماراثون
+                            مدينة حماة</a></h5>
+                </div>
+
+                <div class="event-card" data-category="food">
+                    <a href="event.html?event=5"><img src="assets/img/event5.jpg" alt=""></a>
+                    <h5><a href="event.html?event=5" data-en="Damascus Food Festival"
+                            data-ar="مهرجان دمشق للطعام">مهرجان دمشق للطعام</a></h5>
+                </div>
+
+                <div class="event-card" data-category="music">
+                    <a href="event.html?event=6"><img src="assets/img/event6.jpg" alt=""></a>
+                    <h5><a href="event.html?event=6" data-en="Rock Concert in Latakia"
+                            data-ar="حفلة الروك في اللاذقية">حفلة الروك في اللاذقية</a></h5>
+                </div>
+
+                <div class="event-card" data-category="art">
+                    <a href="event.html?event=7"><img src="assets/img/event7.jpg" alt=""></a>
+                    <h5><a href="event.html?event=7" data-en="Modern Sculpture Exhibition — Damascus"
+                            data-ar="معرض النحت الحديث - دمشق">معرض النحت الحديث - دمشق</a></h5>
+                </div>
+
+                <div class="event-card" data-category="tech">
+                    <a href="event.html?event=8"><img src="assets/img/event8.jpg" alt=""></a>
+                    <h5><a href="event.html?event=8" data-en="Syria Hackathon 2025" data-ar="هاكاثون سوريا 2025">هاكاثون
+                            سوريا 2025</a></h5>
+                </div>
+
+                <div class="event-card" data-category="sports">
+                    <a href="event.html?event=9"><img src="assets/img/event9.jpg" alt=""></a>
+                    <h5><a href="event.html?event=9" data-en="Tartous Beach Volleyball Cup"
+                            data-ar="كأس طرطوس للكرة الطائرة الشاطئية">كأس طرطوس للكرة الطائرة الشاطئية</a></h5>
+                </div>
+
+                <div class="event-card" data-category="food">
+                    <a href="event.html?event=10"><img src="assets/img/event10.jpg" alt=""></a>
+                    <h5><a href="event.html?event=10" data-en="Vegan Market — Damascus"
+                            data-ar="سوق النباتيين - دمشق">سوق النباتيين - دمشق</a></h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LATEST EVENTS ===== -->
+    <section id="latest-events" class="pb-5">
+        <div class="container">
+            <h3 class="text-center mb-4 fw-bold" data-en="Latest events in the city"
+                data-ar="أحدث الفعاليات في المدينة">أحدث الفعاليات في المدينة</h3>
+
+            <div class="events-grid">
+                <div class="event-card">
+                    <a href="event.html?event=11"><img src="assets/img/event11.jpg" alt=""></a>
+                    <h5><a href="event.html?event=11" data-en="Open-Air Cinema — Citadel of Aleppo"
+                            data-ar="سينما الهواء الطلق - قلعة حلب">سينما الهواء الطلق - قلعة حلب</a></h5>
+                </div>
+                <div class="event-card">
+                    <a href="event.html?event=12"><img src="assets/img/event12.jpg" alt=""></a>
+                    <h5><a href="event.html?event=12" data-en="Startup Meetup — Homs"
+                            data-ar="لقاء الشركات الناشئة - حمص">لقاء الشركات الناشئة - حمص</a></h5>
+                </div>
+                <div class="event-card">
+                    <a href="event.html?event=13"><img src="assets/img/event13.jpg" alt=""></a>
+                    <h5><a href="event.html?event=13" data-en="Farmers' Market — Hama"
+                            data-ar="سوق المزارعين - حماة">سوق المزارعين - حماة</a></h5>
+                </div>
+                <div class="event-card">
+                    <a href="event.html?event=14"><img src="assets/img/event14.jpg" alt=""></a>
+                    <h5><a href="event.html?event=14" data-en="Charity Run — Damascus" data-ar="سباق الخير - دمشق">سباق
+                            الخير - دمشق</a></h5>
+                </div>
+                <div class="event-card">
+                    <a href="event.html?event=15"><img src="assets/img/event15.jpg" alt=""></a>
+                    <h5><a href="event.html?event=15" data-en="Photography Workshop — Aleppo"
+                            data-ar="ورشة التصوير الفوتوغرافي - حلب">ورشة التصوير الفوتوغرافي - حلب</a></h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TEAM SECTION ===== -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-card">
+                <h2 class="text-center mb-5" data-en="Meet our team" data-ar="تعرف على فريقنا">تعرف على فريقنا</h2>
+                <div class="row g-4">
+                    <!-- Randa Deeb -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card team-card h-100">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                class="card-img-top team-img" alt="Randa Deeb">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">راندا ديب</h5>
+                                <p class="card-text text-muted" data-en="UI Designer" data-ar="مصممة واجهات المستخدم">
+                                    مصممة واجهات المستخدم</p>
+                                <span class="username">randa_284420</span>
+                                <p class="small mt-2"
+                                    data-en="A creative designer focusing on intuitive and beautiful user experiences."
+                                    data-ar="مصممة مبدعة تركز على إنشاء تجارب مستخدم بديهية وجميلة.">
+                                    مصممة مبدعة تركز على إنشاء تجارب مستخدم بديهية وجميلة.
+                                </p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mohammed Ghalawnji -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card team-card h-100">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                class="card-img-top team-img" alt="Mohammed Ghalawnji">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">محمد غلاونجي</h5>
+                                <p class="card-text text-muted" data-en="Back-end Developer"
+                                    data-ar="مطور الواجهة الخلفية">مطور الواجهة الخلفية</p>
+                                <span class="username">mohammed_303279</span>
+                                <p class="small mt-2"
+                                    data-en="Expert in building robust server systems and database engineering."
+                                    data-ar="خبير في بناء أنظمة قوية للخادم وهندسة قواعد البيانات.">
+                                    خبير في بناء أنظمة قوية للخادم وهندسة قواعد البيانات.
+                                </p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rami Ibrahim -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card team-card h-100">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                class="card-img-top team-img" alt="Rami Ibrahim">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">رامي إبراهيم</h5>
+                                <p class="card-text text-muted" data-en="Front-end Developer"
+                                    data-ar="مطور الواجهة الأمامية">مطور الواجهة الأمامية</p>
+                                <span class="username">rami_301609</span>
+                                <p class="small mt-2"
+                                    data-en="Specialized in building interactive and responsive user interfaces."
+                                    data-ar="متخصص في إنشاء واجهات مستخدم تفاعلية ومتجاوبة.">
+                                    متخصص في إنشاء واجهات مستخدم تفاعلية ومتجاوبة.
+                                </p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alaa Al-Abdullah -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card team-card h-100">
+                            <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                                class="card-img-top team-img" alt="Alaa Al-Abdullah">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">آلاء العبدالله</h5>
+                                <p class="card-text text-muted" data-en="Content Strategist"
+                                    data-ar="استراتيجية المحتوى">استراتيجية المحتوى</p>
+                                <span class="username">alaa_317160</span>
+                                <p class="small mt-2"
+                                    data-en="Crafting engaging content strategies that connect with our community."
+                                    data-ar="تطوير استراتيجيات محتوى جذابة تتواصل مع مجتمعنا.">
+                                    تطوير استراتيجيات محتوى جذابة تتواصل مع مجتمعنا.
+                                </p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-medium"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ahmad Salakh -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card team-card h-100">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                class="card-img-top team-img" alt="Ahmad Salakh">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">أحمد سلاخ</h5>
+                                <p class="card-text text-muted" data-en="Data Analyst" data-ar="محلل البيانات">محلل
+                                    البيانات</p>
+                                <span class="username">ahmad_286451</span>
+                                <p class="small mt-2"
+                                    data-en="Turning data into actionable insights to drive decisions."
+                                    data-ar="تحويل البيانات إلى رؤى قابلة للتنفيذ لدفع قرارات العمل.">
+                                    تحويل البيانات إلى رؤى قابلة للتنفيذ لدفع قرارات العمل.
+                                </p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-tableau"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- row -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center text-white py-5 mt-5">
+        <div class="container">
+            <h5 class="fw-bold mb-3" data-en="CityPulse – Discover what's happening around you"
+                data-ar="CityPulse – اكتشف ما يحدث حولك">
+                CityPulse – اكتشف ما يحدث حولك
+            </h5>
+
+            <p class="mb-1">
+                <i class="fa-solid fa-location-dot me-2"></i>
+                <span data-en="Hama, Syria – Al-Jaish Street, next to the Cultural Center"
+                    data-ar="حماة، سوريا – شارع الجيش، بجوار المركز الثقافي">
+                    حماة، سوريا – شارع الجيش، بجوار المركز الثقافي
+                </span>
+            </p>
+
+            <p class="mb-1">
+                <i class="fa-solid fa-envelope me-2"></i> info@citypulse.com
+            </p>
+
+            <p class="mb-3">
+                <i class="fa-solid fa-phone me-2"></i> 963+ 222 444 980
+            </p>
+
+            <div class="social-links mb-3">
+                <a href="#" class="mx-2 text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-x-twitter fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+
+            <p class="small-credits mb-0" data-en="© 2025 CityPulse. All rights reserved. | Designed with ❤️ in Syria."
+                data-ar="© 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.">
+                © 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

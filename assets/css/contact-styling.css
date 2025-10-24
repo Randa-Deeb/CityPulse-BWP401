@@ -1,0 +1,981 @@
+/* Contact Page Styling */
+:root {
+  --primary-color: #0d6efd;
+  --success-color: #198754;
+  --info-color: #0dcaf0;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+}
+
+/* General Styles */
+body {
+  font-family: "Cairo", sans-serif;
+  background-color: #f8f9fa;
+  line-height: 1.6;
+}
+
+/* Contact Form Card */
+.contact-form-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.contact-form-card .card-header {
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+/* Contact Info Items */
+.contact-info-item {
+  padding: 0.5rem 0;
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Form Styling */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), #0a58ca);
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+/* Quick Links */
+.list-group-item {
+  border: none;
+  padding: 1rem;
+  color: #495057;
+  transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+/* FAQ Accordion */
+.accordion-button {
+  font-weight: 600;
+  padding: 1.25rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.accordion-body {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-top: none;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Toast Customization */
+.toast {
+  border-radius: 10px;
+  font-family: "Cairo", sans-serif;
+}
+
+/* Dark Mode Support */
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-mode .card {
+  background-color: #2d2d2d;
+  border-color: #404040;
+  color: #ffffff;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+  background-color: #2d2d2d;
+  border-color: #404040;
+  color: #ffffff;
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+  background-color: #2d2d2d;
+  border-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.dark-mode .list-group-item {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+.dark-mode .accordion-button {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+.dark-mode .accordion-body {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .floating-buttons {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .floating-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .contact-form-card .card-body {
+    padding: 1.5rem;
+  }
+}
+
+/* Animation for form submission */
+@keyframes submitSuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.submit-success {
+  animation: submitSuccess 0.6s ease;
+}
+
+/* Loading state */
+.btn-loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Character counter */
+.char-counter {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Contact Page Styling - Enhanced Dark Mode */
+:root {
+  --primary-color: #0d6efd;
+  --success-color: #198754;
+  --info-color: #0dcaf0;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+
+  /* Light mode colors */
+  --bg-light: #f8f9fa;
+  --card-light: #ffffff;
+  --text-light: #212529;
+  --text-muted-light: #6c757d;
+  --border-light: #dee2e6;
+
+  /* Dark mode colors */
+  --bg-dark: #0f1419;
+  --card-dark: #1a2228;
+  --card-dark-hover: #212a32;
+  --text-dark: #e9ecef;
+  --text-muted-dark: #adb5bd;
+  --border-dark: #2d3748;
+  --border-dark-hover: #3a4556;
+}
+
+/* General Styles */
+body {
+  font-family: "Cairo", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  line-height: 1.6;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Contact Form Card */
+.contact-form-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  background: var(--card-light);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form-card .card-header {
+  border-bottom: none;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), #0a58ca);
+}
+
+/* Contact Info Items */
+.contact-info-item {
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  padding: 1.3rem;
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+/* Form Styling */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-light);
+  background-color: var(--card-light);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  background-color: var(--card-light);
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), #0a58ca);
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+/* Quick Links */
+.list-group-item {
+  border: none;
+  padding: 2rem;
+  color: var(--text-light);
+  background: transparent;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--border-light) !important;
+}
+
+.list-group-item:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+.list-group-item:last-child {
+  border-bottom: none !important;
+}
+
+/* FAQ Accordion */
+.accordion-button {
+  font-weight: 600;
+  padding: 1.25rem;
+  background-color: var(--card-light);
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.accordion-button::after {
+  filter: invert(0);
+  transition: all 0.3s ease;
+}
+
+.accordion-body {
+  background-color: var(--card-light);
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+  border-top: none;
+}
+
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Toast Customization */
+.toast {
+  border-radius: 10px;
+  font-family: "Cairo", sans-serif;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== ENHANCED DARK MODE ===== */
+.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.dark-mode .card {
+  background-color: var(--card-dark);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .card-header {
+  background: linear-gradient(135deg, var(--primary-color), #0a4da3) !important;
+  border-color: var(--border-dark);
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+  background-color: var(--card-dark);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+  background-color: var(--card-dark);
+  border-color: var(--primary-color);
+  color: var(--text-dark);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.dark-mode .form-control::placeholder {
+  color: var(--text-muted-dark);
+}
+
+.dark-mode .form-label {
+  color: var(--text-dark);
+}
+
+.dark-mode .form-text {
+  color: var(--text-muted-dark) !important;
+}
+
+.dark-mode .list-group-item {
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+  border-color: var(--border-dark) !important;
+}
+
+.dark-mode .list-group-item:hover {
+  background-color: var(--card-dark-hover);
+  color: var(--primary-color);
+}
+
+.dark-mode .accordion-button {
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+.dark-mode .accordion-button:not(.collapsed) {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.dark-mode .accordion-button::after {
+  filter: invert(1);
+}
+
+.dark-mode .accordion-body {
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+.dark-mode .text-muted {
+  color: var(--text-muted-dark) !important;
+}
+
+.dark-mode .contact-icon {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .floating-btn {
+  background: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.dark-mode .btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Dark mode specific animations */
+.dark-mode .contact-form-card {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .contact-info-item:hover {
+  background-color: var(--card-dark-hover);
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Enhanced focus states for dark mode */
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus,
+.dark-mode .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+/* Improved contrast for better accessibility */
+.dark-mode .card {
+  background: linear-gradient(145deg, var(--card-dark), var(--bg-dark));
+}
+
+.dark-mode .card-header h4 {
+  color: #f8f9fa !important;
+}
+.dark-mode .card-body div {
+  background-color: var(--card-dark) !important;
+}
+.dark-mode .contact-form-card {
+  background: linear-gradient(145deg, var(--card-dark), #1e2730);
+}
+
+/* Custom scrollbar for dark mode */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 4px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--border-dark-hover);
+}
+
+/* Selection color for dark mode */
+.dark-mode ::selection {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .floating-buttons {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .floating-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .contact-form-card .card-body {
+    padding: 1.5rem;
+  }
+
+  .dark-mode .floating-btn {
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* Animation for form submission */
+@keyframes submitSuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.submit-success {
+  animation: submitSuccess 0.6s ease;
+}
+
+/* Loading state */
+.btn-loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Character counter */
+.char-counter {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Dark mode toggle animation */
+.dark-mode-toggle {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-mode-toggle:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Enhanced dark mode background pattern */
+.dark-mode body {
+  background-image: radial-gradient(
+      circle at 15% 50%,
+      rgba(13, 110, 253, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(13, 110, 253, 0.03) 0%,
+      transparent 50%
+    );
+  background-attachment: fixed;
+}
+
+/* Glass morphism effect for cards in dark mode */
+.dark-mode .card {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Improved text contrast */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+  color: var(--text-dark);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Better focus visibility in dark mode */
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+  background-color: var(--card-dark-hover);
+}
+
+/* ===== FLOATING ACTION BUTTONS ===== */
+/* Fixed position floating buttons container */
+.floating-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Base floating button styling */
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effects for floating buttons */
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Shimmer effect on hover */
+.floating-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.floating-btn:hover::before {
+  left: 100%;
+}
+
+/* Individual floating button color schemes */
+.dark-mode-toggle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.scroll-to-top {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  display: none;
+}
+
+.scroll-to-bottom {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  display: none;
+}
+
+/* ===== DARK MODE STYLES ===== */
+/* Dark mode base styling */
+body.dark-mode {
+  background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
+  color: #e0e0e0;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Dark mode transitions for all child elements */
+body.dark-mode * {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card styling in dark mode */
+.card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .card {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+/* Navbar dark mode styling */
+.navbar {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .navbar {
+  background-color: #2d2d2d !important;
+  border-bottom: 1px solid #444;
+}
+
+body.dark-mode .navbar-brand {
+  color: #0d6efd !important;
+}
+
+body.dark-mode .nav-link {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link:focus {
+  color: #0d6efd !important;
+}
+
+body.dark-mode .nav-link.active {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+body.dark-mode .navbar-toggler {
+  border-color: #555;
+}
+
+body.dark-mode .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body.dark-mode .navbar-collapse {
+  background-color: #2d2d2d;
+}
+
+/* Form elements in dark mode */
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #3d3d3d;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+/* Button styling in dark mode */
+body.dark-mode .btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Text and content styling in dark mode */
+.text-muted {
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .text-muted {
+  color: #aaa !important;
+}
+
+/* Footer dark mode styling */
+footer {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode footer {
+  background-color: #1a1a1a !important;
+}
+
+/* Shadow adjustments for dark mode */
+.shadow-sm {
+  transition: box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ===== ANIMATIONS & TRANSITIONS ===== */
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fade in animation for mode transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.dark-mode-toggle.dark-mode-active {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Smooth transitions for interactive elements */
+.navbar-brand,
+.nav-link,
+.card-title,
+.card-text {
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Background gradient transition */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f3f4f6, #eef1f6);
+  z-index: -1;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode::before {
+  background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
+}
+
+/* Transition state management */
+body.mode-transitioning {
+  overflow-x: hidden;
+}

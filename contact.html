@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title data-en="CityPulse | Contact Us" data-ar="CityPulse | اتصل بنا">CityPulse | اتصل بنا</title>
+
+    <!-- Bootstrap: i18n.js سيبدّل LTR/RTL عبر هذا المعرف -->
+    <link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+        rel="stylesheet" />
+
+    <!-- Icons & flags -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/contact-styling.css">
+    <link rel="stylesheet" href="assets/css/langSwap.css" />
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="./index.html">
+                <i class="fas fa-city me-2"></i>CityPulse
+            </a>
+
+            <!-- Language Selector (drop-down) -->
+            <div class="language-dropdown dropdown">
+                <button class="language-selector dropdown-toggle d-flex align-items-center" type="button"
+                    id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img id="current-lang-flag" src="https://flagcdn.com/w40/sy.png" alt="flag">
+                    <span id="current-lang-text">العربية</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <li>
+                        <a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="ar">
+                            <img src="https://flagcdn.com/w40/sy.png" alt="syria"><span>العربية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="en">
+                            <img src="https://flagcdn.com/w40/us.png" alt="usa"><span>English</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html" data-en="Home"
+                            data-ar="الرئيسية">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html" data-en="Events"
+                            data-ar="الفعاليات">الفعاليات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html" data-en="About" data-ar="من نحن">من
+                            نحن</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html" data-en="Contact"
+                            data-ar="اتصل بنا">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== FLOATING ACTION BUTTONS ===== -->
+    <div class="floating-buttons">
+        <button class="floating-btn dark-mode-toggle" id="darkModeToggle" title=""
+            data-en-placeholder="Toggle dark mode" data-ar-placeholder="تبديل الوضع الليلي">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="floating-btn scroll-to-top" id="scrollToTop" title="" data-en-placeholder="Scroll to top"
+            data-ar-placeholder="الانتقال إلى الأعلى">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="floating-btn scroll-to-bottom" id="scrollToBottom" title=""
+            data-en-placeholder="Scroll to bottom" data-ar-placeholder="الانتقال إلى الأسفل">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container mt-5 pt-4">
+        <!-- Page Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h1 class="fw-bold text-primary mb-3" data-en="Contact Us" data-ar="اتصل بنا">اتصل بنا</h1>
+                <p class="lead text-muted" data-en="We're here to help! Reach out with any questions or feedback."
+                    data-ar="نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو ملاحظات">
+                    نحن هنا لمساعدتك! تواصل معنا لأي استفسارات أو ملاحظات
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm contact-form-card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-envelope me-2"></i>
+                            <span data-en="Send us a message" data-ar="أرسل لنا رسالة">أرسل لنا رسالة</span>
+                        </h5>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <form id="contactForm" novalidate>
+                            <div id="contactAlert"></div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="contactName" class="form-label" data-en="Full name"
+                                        data-ar="الاسم الكامل">الاسم الكامل <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="contactName" required
+                                        data-en-placeholder="Enter your full name"
+                                        data-ar-placeholder="أدخل اسمك الكامل">
+                                    <div class="invalid-feedback" data-en="Please enter your full name"
+                                        data-ar="يرجى إدخال اسمك الكامل">يرجى إدخال اسمك الكامل</div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="contactEmail" class="form-label" data-en="Email address"
+                                        data-ar="البريد الإلكتروني">البريد الإلكتروني <span
+                                            class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="contactEmail" required
+                                        data-en-placeholder="example@email.com" data-ar-placeholder="example@email.com">
+                                    <div class="invalid-feedback" data-en="Please enter a valid email"
+                                        data-ar="يرجى إدخال بريد إلكتروني صحيح">يرجى إدخال بريد إلكتروني صحيح</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contactSubject" class="form-label" data-en="Subject"
+                                    data-ar="الموضوع">الموضوع <span class="text-danger">*</span></label>
+                                <select class="form-select" id="contactSubject" required>
+                                    <option value="" selected disabled data-en="Choose a subject"
+                                        data-ar="اختر نوع الاستفسار">اختر نوع الاستفسار</option>
+                                    <option value="general" data-en="General inquiry" data-ar="استفسار عام">استفسار عام
+                                    </option>
+                                    <option value="event" data-en="Event inquiry" data-ar="استفسار عن فعالية">استفسار عن
+                                        فعالية</option>
+                                    <option value="booking" data-en="Booking inquiry" data-ar="استفسار عن حجز">استفسار
+                                        عن حجز</option>
+                                    <option value="technical" data-en="Technical issue" data-ar="مشكلة تقنية">مشكلة
+                                        تقنية</option>
+                                    <option value="partnership" data-en="Partnership" data-ar="شراكة وتعاون">شراكة
+                                        وتعاون</option>
+                                    <option value="other" data-en="Other" data-ar="أخرى">أخرى</option>
+                                </select>
+                                <div class="invalid-feedback" data-en="Please choose a subject"
+                                    data-ar="يرجى اختيار موضوع">يرجى اختيار موضوع</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contactMessage" class="form-label" data-en="Message"
+                                    data-ar="الرسالة">الرسالة <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="contactMessage" rows="6" required
+                                    data-en-placeholder="Write your message here..."
+                                    data-ar-placeholder="اكتب رسالتك هنا..."></textarea>
+                                <div class="invalid-feedback" data-en="Please enter your message"
+                                    data-ar="يرجى إدخال رسالتك">يرجى إدخال رسالتك</div>
+                                <div class="form-text" data-en="Maximum 1000 characters" data-ar="الحد الأقصى 1000 حرف">
+                                    الحد الأقصى 1000 حرف</div>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="contactNewsletter">
+                                <label class="form-check-label" for="contactNewsletter"
+                                    data-en="I want to receive CityPulse news and offers"
+                                    data-ar="أرغب في استلام آخر الأخبار والعروض من CityPulse">
+                                    أرغب في استلام آخر الأخبار والعروض من CityPulse
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                <span data-en="Send message" data-ar="إرسال الرسالة">إرسال الرسالة</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Information -->
+            <div class="col-lg-4">
+                <!-- Contact Info -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2 text-primary"></i>
+                            <span data-en="Contact information" data-ar="معلومات الاتصال">معلومات الاتصال</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-info-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon bg-primary text-white"><i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-1" data-en="Address" data-ar="العنوان">العنوان</h6>
+                                    <p class="mb-0 text-muted"
+                                        data-en="Al-Jaish Street, next to the Cultural Center, Hama, Syria"
+                                        data-ar="شارع الجيش، بجوار المركز الثقافي، حماة، سوريا">
+                                        شارع الجيش، بجوار المركز الثقافي، حماة، سوريا
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon bg-success text-white"><i class="fas fa-phone"></i></div>
+                                <div class="ms-3">
+                                    <h6 class="mb-1" data-en="Phone" data-ar="الهاتف">الهاتف</h6>
+                                    <p class="mb-0 text-muted">963+ 222 444 980</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon bg-info text-white"><i class="fas fa-envelope"></i></div>
+                                <div class="ms-3">
+                                    <h6 class="mb-1" data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</h6>
+                                    <p class="mb-0 text-muted">info@citypulse.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon bg-warning text-white"><i class="fas fa-clock"></i></div>
+                                <div class="ms-3">
+                                    <h6 class="mb-1" data-en="Working hours" data-ar="ساعات العمل">ساعات العمل</h6>
+                                    <p class="mb-0 text-muted" data-en="Sun - Thu: 9:00 AM - 6:00 PM"
+                                        data-ar="الأحد - الخميس: 9:00 صباحاً - 6:00 مساءً">
+                                        الأحد - الخميس: 9:00 صباحاً - 6:00 مساءً
+                                    </p>
+                                    <p class="mb-0 text-muted" data-en="Fri - Sat: Closed"
+                                        data-ar="الجمعة - السبت: مغلق">الجمعة - السبت: مغلق</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-link me-2 text-primary"></i>
+                            <span data-en="Quick links" data-ar="روابط سريعة">روابط سريعة</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <a href="events.html"
+                                class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-calendar-alt me-3 text-primary"></i>
+                                <span data-en="Browse upcoming events" data-ar="تصفح الفعاليات القادمة">تصفح الفعاليات
+                                    القادمة</span>
+                            </a>
+                            <a href="about.html"
+                                class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-users me-3 text-success"></i>
+                                <span data-en="Meet our team" data-ar="تعرف على فريقنا">تعرف على فريقنا</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-question-circle me-3 text-info"></i>
+                                <span data-en="FAQ" data-ar="الأسئلة الشائعة">الأسئلة الشائعة</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-file-alt me-3 text-warning"></i>
+                                <span data-en="Terms of service" data-ar="شروط الخدمة">شروط الخدمة</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white text-center">
+                        <h4 class="mb-0 text-primary">
+                            <i class="fas fa-question-circle me-2"></i>
+                            <span data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">الأسئلة الشائعة</span>
+                        </h4>
+                        <p class="text-muted mt-2 mb-0" data-en="Find quick answers about our events and services"
+                            data-ar="ابحث عن إجابات سريعة للأسئلة الشائعة حول فعالياتنا وخدماتنا">
+                            ابحث عن إجابات سريعة للأسئلة الشائعة حول فعالياتنا وخدماتنا
+                        </p>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Search -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="faqSearch"
+                                        data-en-placeholder="Search FAQs..."
+                                        data-ar-placeholder="ابحث في الأسئلة الشائعة...">
+                                    <button class="btn btn-outline-secondary" type="button" id="clearSearch" title=""
+                                        data-en-placeholder="Clear" data-ar-placeholder="مسح">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <span class="input-group-text bg-primary text-white"><i
+                                            class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion" id="faqAccordion">
+                            <!-- Booking & Tickets -->
+                            <div class="faq-category mb-4">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-ticket-alt me-2"></i>
+                                    <span data-en="Bookings & Tickets" data-ar="الحجوزات والتذاكر">الحجوزات
+                                        والتذاكر</span>
+                                </h5>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faq1" data-en="How can I book event tickets?"
+                                            data-ar="كيف يمكنني حجز تذاكر للفعاليات؟">
+                                            كيف يمكنني حجز تذاكر للفعاليات؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq1" class="accordion-collapse collapse show"
+                                        data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="You can book directly from the event page by clicking “Book now” and following the steps. You'll need your contact info and payment details."
+                                            data-ar="يمكنك حجز التذاكر مباشرة من صفحة الفعالية بالضغط على زر &quot;احجز الآن&quot; ومتابعة خطوات الحجز الإلكتروني. ستحتاج إلى تقديم معلومات الاتصال الخاصة بك وتفاصيل الدفع لإكمال الحجز.">
+                                            يمكنك حجز التذاكر مباشرة من صفحة الفعالية بالضغط على زر "احجز الآن"...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq2"
+                                            data-en="Can I cancel and get a refund?"
+                                            data-ar="هل يمكنني إلغاء حجزي واسترداد المبلغ؟">
+                                            هل يمكنني إلغاء حجزي واسترداد المبلغ؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Yes: full refund if canceled 48h before; 50% within 48h; no refunds within 24h."
+                                            data-ar="نعم: استرداد كامل عند الإلغاء قبل 48 ساعة؛ 50% خلال 48 ساعة؛ ولا يوجد استرداد قبل أقل من 24 ساعة.">
+                                            نعم، يمكنك إلغاء حجزك والحصول على استرداد كامل إذا تم الإلغاء قبل 48 ساعة...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq3"
+                                            data-en="What payment methods do you accept?"
+                                            data-ar="ما هي طرق الدفع التي تقبلونها؟">
+                                            ما هي طرق الدفع التي تقبلونها؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="We accept credit cards (Visa/Mastercard), digital wallets, and bank transfers via our secure gateway."
+                                            data-ar="نقبل بطاقات الائتمان (فيزا/ماستركارد)، المحافظ الرقمية، والتحويلات البنكية عبر بوابة دفع آمنة.">
+                                            نحن نقبل طرق دفع متنوعة تشمل بطاقات الائتمان...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq4"
+                                            data-en="Can I transfer my ticket?"
+                                            data-ar="هل يمكنني نقل تذكرتي لشخص آخر؟">
+                                            هل يمكنني نقل تذكرتي لشخص آخر؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Yes, tickets are transferable. Contact support at least 24h before with the new attendee details."
+                                            data-ar="نعم، التذاكر قابلة للتحويل. الرجاء التواصل مع الدعم قبل 24 ساعة مع بيانات الحضور الجديدة.">
+                                            نعم، التذاكر قابلة للتحويل...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Event Information -->
+                            <div class="faq-category mb-4">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-calendar-alt me-2"></i>
+                                    <span data-en="Event Information" data-ar="معلومات الفعاليات">معلومات
+                                        الفعاليات</span>
+                                </h5>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq5"
+                                            data-en="How can I suggest a new event?"
+                                            data-ar="كيف يمكنني اقتراح فعالية جديدة؟">
+                                            كيف يمكنني اقتراح فعالية جديدة؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Send details via the contact form: type of event, audience, and proposed dates."
+                                            data-ar="أرسل التفاصيل عبر نموذج الاتصال: نوع الفعالية، الجمهور المستهدف، والتواريخ المقترحة.">
+                                            نرحب باقتراحاتك! يمكنك إرسال تفاصيل الفعالية المقترحة...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq6"
+                                            data-en="Is the event kid-friendly?"
+                                            data-ar="كيف أعرف إذا كانت الفعالية مناسبة للأطفال؟">
+                                            كيف أعرف إذا كانت الفعالية مناسبة للأطفال؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Each event page lists age recommendations and family-friendly icons."
+                                            data-ar="تعرض كل صفحة فعالية توصيات العمر وتضع أيقونة للفعاليات العائلية.">
+                                            تشير كل صفحة فعالية بوضوح إلى الفئة العمرية الموصى بها...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq7"
+                                            data-en="What if an event is canceled?"
+                                            data-ar="ماذا يحدث إذا تم إلغاء فعالية؟">
+                                            ماذا يحدث إذا تم إلغاء فعالية؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="We notify all ticket holders by email/SMS and issue refunds within 5–7 business days."
+                                            data-ar="نُخطر جميع حاملي التذاكر بالبريد والرسائل ونُصدر الاسترداد خلال 5–7 أيام عمل.">
+                                            في حالة إلغاء الفعالية، سيتم إخطار جميع حاملي التذاكر...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq8"
+                                            data-en="Accessibility for people with disabilities?"
+                                            data-ar="هل الفعاليات متاحة للأشخاص ذوي الإعاقة؟">
+                                            هل الفعاليات متاحة للأشخاص ذوي الإعاقة؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="We strive for accessibility. Check event pages or contact us to discuss specific needs."
+                                            data-ar="نسعى لتوفير الوصول للجميع. تحقق من صفحة الفعالية أو تواصل معنا لاحتياجات خاصة.">
+                                            نعم، نحن نسعى لجعل جميع فعالياتنا متاحة...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Technical Support -->
+                            <div class="faq-category mb-4">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-laptop-code me-2"></i>
+                                    <span data-en="Technical Support" data-ar="الدعم الفني">الدعم الفني</span>
+                                </h5>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq9"
+                                            data-en="I didn't receive a confirmation email. What now?"
+                                            data-ar="لم أتلق رسالة التأكيد بالبريد الإلكتروني. ماذا أفعل؟">
+                                            لم أتلق رسالة التأكيد بالبريد الإلكتروني. ماذا أفعل؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Check your spam folder, then contact support with your booking details to resend or verify."
+                                            data-ar="تحقق من مجلد البريد العشوائي، ثم اتصل بالدعم مع تفاصيل الحجز لإعادة الإرسال أو التحقق.">
+                                            أولاً، تحقق من مجلد البريد العشوائي...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq10"
+                                            data-en="Site not working properly?"
+                                            data-ar="الموقع لا يعمل بشكل صحيح. كيف أبلغ عن المشكلة؟">
+                                            الموقع لا يعمل بشكل صحيح. كيف يمكنني الإبلاغ عن المشكلات؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Clear your browser cache and try again. If it persists, contact technical support with details."
+                                            data-ar="امسح ذاكرة التخزين المؤقت وحاول مجددًا. إن استمرت المشكلة، تواصل مع الدعم التقني بالتفاصيل.">
+                                            نعتذر عن الإزعاج. يرجى مسح ذاكرة التخزين المؤقت...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq11"
+                                            data-en="Is my personal data safe?" data-ar="هل معلوماتي الشخصية آمنة؟">
+                                            هل معلوماتي الشخصية آمنة؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Yes. We encrypt your data and comply with relevant privacy regulations."
+                                            data-ar="نعم. نُشفر بياناتك ونلتزم بلوائح الخصوصية ذات الصلة.">
+                                            بالتأكيد. نحن نأخذ خصوصية البيانات على محمل الجد...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Partnership & Business -->
+                            <div class="faq-category">
+                                <h5 class="text-primary mb-3">
+                                    <i class="fas fa-handshake me-2"></i>
+                                    <span data-en="Partnership & Business" data-ar="الشراكة والأعمال">الشراكة
+                                        والأعمال</span>
+                                </h5>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq12"
+                                            data-en="How can my company partner with CityPulse?"
+                                            data-ar="كيف يمكن لشركتي الشراكة مع CityPulse؟">
+                                            كيف يمكن لشركتي الشراكة مع CityPulse؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="We welcome sponsorships, content collaborations, and more. Use the partnership form and we'll schedule a call."
+                                            data-ar="نرحّب بالرعايات والتعاون في المحتوى وغيرها. أرسل طلب الشراكة وسنحدد مكالمة.">
+                                            نحن دائمًا منفتحون على شراكات جديدة! ...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq13"
+                                            data-en="Do you offer corporate group discounts?"
+                                            data-ar="هل تقدمون خصومات جماعية للفعاليات المؤسسية؟">
+                                            هل تقدمون خصومات جماعية للفعاليات المؤسسية؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Yes, for 10+ attendees with added perks like reserved seating and branded materials."
+                                            data-ar="نعم، للحجوزات الجماعية 10+ مع مزايا مثل المقاعد المحجوزة ومواد بعلامة تجارية.">
+                                            نعم، نقدم أسعارًا خاصة للحجوزات الجماعية...
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq14"
+                                            data-en="Can I host my event in your venues?"
+                                            data-ar="هل يمكنني استضافة فعاليتي في قاعاتكم؟">
+                                            هل يمكنني استضافة فعاليتي في قاعاتكم؟
+                                        </button>
+                                    </h2>
+                                    <div id="faq14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body"
+                                            data-en="Absolutely. We offer hall rentals and full event management. Contact our venues team."
+                                            data-ar="بالتأكيد. نوفر تأجير القاعات وإدارة الفعاليات كاملة. تواصل مع فريق القاعات.">
+                                            بالتأكيد! نحن نقدم خدمات تأجير القاعات...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Still have questions -->
+                        <div class="text-center mt-5 p-4 bg-light rounded">
+                            <h5 class="text-primary mb-3" data-en="Still have questions?" data-ar="لا تزال لديك أسئلة؟">
+                                لا تزال لديك أسئلة؟</h5>
+                            <p class="text-muted mb-3"
+                                data-en="Couldn’t find what you’re looking for? Contact our friendly team."
+                                data-ar="لم تجد الإجابة التي تبحث عنها؟ يرجى التواصل مع فريقنا الودود.">
+                                لم تجد الإجابة التي تبحث عنها؟ يرجى التواصل مع فريقنا الودود.
+                            </p>
+                            <a href="#contactForm" class="btn btn-primary me-3">
+                                <i class="fas fa-envelope me-2"></i>
+                                <span data-en="Contact support" data-ar="اتصل بالدعم">اتصل بالدعم</span>
+                            </a>
+                            <a href="tel:+963980444222" class="btn btn-outline-primary">
+                                <i class="fas fa-phone me-2"></i>
+                                <span data-en="Call now" data-ar="اتصل الآن">اتصل الآن</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center text-white py-5 mt-5" style="background:#212529">
+        <div class="container">
+            <h5 class="fw-bold mb-3" data-en="CityPulse – Discover what's happening around you"
+                data-ar="CityPulse – اكتشف ما يحدث حولك">
+                CityPulse – اكتشف ما يحدث حولك
+            </h5>
+
+            <p class="mb-1"><i class="fa-solid fa-location-dot me-2"></i>
+                <span data-en="Hama, Syria – Al-Jaish Street, next to the Cultural Center"
+                    data-ar="حماة، سوريا – شارع الجيش، بجوار المركز الثقافي">
+                    حماة، سوريا – شارع الجيش، بجوار المركز الثقافي
+                </span>
+            </p>
+            <p class="mb-1"><i class="fa-solid fa-envelope me-2"></i> info@citypulse.com</p>
+            <p class="mb-3"><i class="fa-solid fa-phone me-2"></i> 963+ 222 444 980</p>
+
+            <div class="social-links mb-3">
+                <a href="#" class="mx-2 text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-x-twitter fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+
+            <p class="small-credits mb-0" data-en="© 2025 CityPulse. All rights reserved. | Designed with ❤️ in Syria."
+                data-ar="© 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.">
+                © 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toasts -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="successToastMessage" data-en="Message sent successfully!"
+                    data-ar="تم إرسال الرسالة بنجاح!">تم إرسال الرسالة بنجاح!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close" title="" data-en-placeholder="Close" data-ar-placeholder="إغلاق"></button>
+            </div>
+        </div>
+
+        <div id="errorToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="errorToastMessage" data-en="Failed to send message"
+                    data-ar="خطأ في إرسال الرسالة">خطأ في إرسال الرسالة</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close" title="" data-en-placeholder="Close" data-ar-placeholder="إغلاق"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- i18n المركزي -->
+    <script src="assets/js/i18n.js"></script>
+
+    <!-- سكربت هذه الصفحة -->
+    <script src="./assets/js/contact-script.js"></script>
+</body>
+
+</html>

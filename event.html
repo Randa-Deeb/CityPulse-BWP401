@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title data-en="CityPulse | Event Details" data-ar="CityPulse | تفاصيل الفعالية">CityPulse | تفاصيل الفعالية</title>
+
+    <!-- Bootstrap (سيبدّل RTL/LTR عبر i18n.js) -->
+    <link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" />
+
+    <!-- أيقونات -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+
+    <!-- ملفاتك (نفس events.html) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/event-styling.css">
+    <link rel="stylesheet" href="assets/css/langSwap.css" />
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="./index.html">
+                <i class="fas fa-city me-2"></i>CityPulse
+            </a>
+            <div class="language-dropdown dropdown ms-auto me-2">
+                <button class="language-selector dropdown-toggle d-flex align-items-center" type="button"
+                    id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img id="current-lang-flag" src="https://flagcdn.com/w40/sy.png" alt="flag" class="me-2">
+                    <span id="current-lang-text">العربية</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <li><a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="ar">
+                            <img src="https://flagcdn.com/w40/sy.png" alt="syria" class="me-2"><span>العربية</span></a>
+                    </li>
+                    <li><a class="dropdown-item language-option d-flex align-items-center" href="#" data-lang="en">
+                            <img src="https://flagcdn.com/w40/us.png" alt="usa" class="me-2"><span>English</span></a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html" data-en="Home"
+                            data-ar="الرئيسية">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="events.html" data-en="Events"
+                            data-ar="الفعاليات">الفعاليات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html" data-en="About" data-ar="من نحن">من
+                            نحن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" data-en="Contact"
+                            data-ar="اتصل بنا">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== FLOATING ACTION BUTTONS ===== -->
+    <div class="floating-buttons">
+        <button class="floating-btn dark-mode-toggle" id="darkModeToggle" title=""
+            data-en-placeholder="Toggle dark mode" data-ar-placeholder="تبديل الوضع الليلي">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="floating-btn scroll-to-top" id="scrollToTop" title="" data-en-placeholder="Scroll to top"
+            data-ar-placeholder="الانتقال إلى الأعلى">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="floating-btn scroll-to-bottom" id="scrollToBottom" title=""
+            data-en-placeholder="Scroll to bottom" data-ar-placeholder="الانتقال إلى الأسفل">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- ===== EVENT CONTENT (dynamic) ===== -->
+    <main class="container mt-5 pt-4">
+        <div id="eventHeader" class="mb-4"></div>
+
+        <div id="gallerySection" class="mb-4">
+            <h4 data-en="Event Gallery" data-ar="معرض الفعالية">معرض الفعالية</h4>
+            <div id="galleryGrid" class="gallery-grid"></div>
+        </div>
+
+        <div class="row gx-4 gy-4">
+            <div class="col-lg-8" id="eventDetails"></div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h6 class="text-muted" data-en="Event Info" data-ar="معلومات الفعالية">معلومات الفعالية</h6>
+                        <p id="sideDate" class="mb-1"></p>
+                        <p id="sideLocation" class="mb-1"></p>
+                        <div id="mapHolder" class="mt-3" style="height:260px;"></div>
+                        <div class="mt-3 action-buttons">
+                            <button id="addCalendarBtn" class="btn btn-outline-primary calendar-btn btn-action">
+                                <i class="fa-regular fa-calendar-plus me-1"></i>
+                                <span data-en="Add to Calendar" data-ar="أضف إلى التقويم">أضف إلى التقويم</span>
+                            </button>
+                            <button id="shareBtn" class="btn btn-outline-success share-btn btn-action">
+                                <i class="fa-solid fa-share-nodes me-1"></i>
+                                <span data-en="Share" data-ar="مشاركة">مشاركة</span>
+                            </button>
+                            <button id="bookBtn" class="btn btn-primary btn-action" data-bs-toggle="modal"
+                                data-bs-target="#bookingModal">
+                                <i class="fa-solid fa-ticket-simple me-1"></i>
+                                <span data-en="Book" data-ar="احجز">احجز</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h6 class="fw-semibold mb-3" data-en="Related Events" data-ar="فعاليات ذات صلة">فعاليات ذات صلة</h6>
+                    <div id="relatedEvents" class="row g-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0" data-en="Comments & Ratings" data-ar="التعليقات والتقييمات">التعليقات
+                            والتقييمات</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h6 data-en="Leave a comment" data-ar="اترك تعليقًا">اترك تعليقًا</h6>
+                            <form id="commentForm">
+                                <div class="mb-3">
+                                    <label for="commentName" class="form-label" data-en="Your name"
+                                        data-ar="اسمك">اسمك</label>
+                                    <input type="text" class="form-control" id="commentName" required
+                                        data-en-placeholder="Enter your name" data-ar-placeholder="اكتب اسمك">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="commentText" class="form-label" data-en="Your comment"
+                                        data-ar="تعليقك">تعليقك</label>
+                                    <textarea class="form-control" id="commentText" rows="3" required
+                                        data-en-placeholder="Write your comment..."
+                                        data-ar-placeholder="اكتب تعليقك..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="commentRating" class="form-label" data-en="Rating"
+                                        data-ar="التقييم">التقييم</label>
+                                    <select class="form-select" id="commentRating" required>
+                                        <option value="" selected disabled data-en="Choose rating"
+                                            data-ar="اختر التقييم">اختر التقييم</option>
+                                        <option value="5" data-en="★★★★★ Excellent" data-ar="★★★★★ ممتاز">★★★★★ ممتاز
+                                        </option>
+                                        <option value="4" data-en="★★★★ Very good" data-ar="★★★★ جيد جدًا">★★★★ جيد جدًا
+                                        </option>
+                                        <option value="3" data-en="★★★ Good" data-ar="★★★ جيد">★★★ جيد</option>
+                                        <option value="2" data-en="★★ Fair" data-ar="★★ متوسط">★★ متوسط</option>
+                                        <option value="1" data-en="★ Poor" data-ar="★ ضعيف">★ ضعيف</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary" data-en="Submit"
+                                    data-ar="إرسال التعليق">إرسال التعليق</button>
+                            </form>
+                        </div>
+
+                        <div id="commentsList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center text-white py-5 mt-5" style="background:#212529">
+        <div class="container">
+            <h5 class="fw-bold mb-3" data-en="CityPulse – Discover what's happening around you"
+                data-ar="CityPulse – اكتشف ما يحدث حولك">CityPulse – اكتشف ما يحدث حولك</h5>
+
+            <p class="mb-1">
+                <i class="fa-solid fa-location-dot me-2"></i>
+                <span data-en="Hama, Syria – Al-Jaish Street, next to the Cultural Center"
+                    data-ar="حماة، سوريا – شارع الجيش، بجوار المركز الثقافي">حماة، سوريا – شارع الجيش، بجوار المركز
+                    الثقافي</span>
+            </p>
+            <p class="mb-1"><i class="fa-solid fa-envelope me-2"></i> info@citypulse.com</p>
+            <p class="mb-3"><i class="fa-solid fa-phone me-2"></i> 963+ 222 444 980</p>
+
+            <div class="social-links mb-3">
+                <a href="#" class="mx-2 text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-x-twitter fa-lg"></i></a>
+                <a href="#" class="mx-2 text-white"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+
+            <p class="small-credits mb-0" data-en="© 2025 CityPulse. All rights reserved. | Designed with ❤️ in Syria."
+                data-ar="© 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.">
+                © 2025 CityPulse. جميع الحقوق محفوظة. | صُمّم بكل ❤️ في سوريا.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== Booking Modal / Gallery Modal / Toasts (كما هي) ===== -->
+
+    <!-- ===== JS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- i18n المركزي (الآن هو الوحيد الذي يدير الثيم) -->
+    <script src="assets/js/i18n.js"></script>
+
+    <!-- بيانات الفعاليات ثم سكربت العرض -->
+    <script src="assets/js/events-data.js"></script>
+    <script src="assets/js/event-scripntg.js"></script>
+</body>
+
+</html>
